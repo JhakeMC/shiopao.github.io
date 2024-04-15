@@ -1,29 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Group Chat</title>
-<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <title>Simple Chat App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="login-container">
-    <h2>Welcome to the Group Chat</h2>
-    <input type="password" id="password" placeholder="Enter password">
-    <button onclick="checkPassword()">Enter</button>
-</div>
-<div id="username-container" style="display: none;">
-    <h2>Choose your username</h2>
-    <input type="text" id="username" placeholder="Enter username">
-    <button onclick="setUsername()">Submit</button>
-</div>
-<div id="chat-container" style="display: none;">
-    <div id="messages"></div>
-    <input type="text" id="message" placeholder="Type your message">
-    <input type="file" id="file">
-    <button onclick="sendMessage()">Send</button>
-</div>
-<script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js"></script>
-<script src="script.js"></script>
+    <div class="chat-container">
+        <div id="chat-box"></div>
+        <input type="text" id="chat-input" placeholder="Type your message here..." autofocus>
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
