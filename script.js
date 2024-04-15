@@ -1,19 +1,19 @@
 // Initialize Firebase
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    databaseURL: "YOUR_DATABASE_URL",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyBm7Xzs4JfGjhiPbByLQ-F1g-3rZ3-rWm4",
+    authDomain: "shiopao-chats.firebaseapp.com",
+    databaseURL: "https://shiopao-chats-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    projectId: "shiopao-chats",
+    storageBucket: "shiopao-chats.appspot.com",
+    messagingSenderId: "566629963156",
+    appId: "1:566629963156:web:5df926120f834e83662b81"
 };
 
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
 let username;
-let password = "your_password"; // Change this to your desired password
+let password = "altf4"; // Change this to your desired password
 
 function checkPassword() {
     const enteredPassword = document.getElementById("password").value;
