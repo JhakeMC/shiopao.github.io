@@ -1,24 +1,44 @@
-body {
-    font-family: Arial, sans-serif;
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f9;
 }
 
-#login-container, #username-container, #chat-container {
+.chat-container {
     width: 300px;
-    margin: 0 auto;
-    text-align: center;
+    height: 400px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
 }
 
-input[type="password"], input[type="text"], input[type="file"] {
+#chat-box {
+    flex-grow: 1;
+    overflow-y: auto;
     margin-bottom: 10px;
     padding: 5px;
-    width: 100%;
+    border: 1px solid #ccc;
+}
+
+#chat-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 5px;
+    flex-grow: 1;
 }
 
 button {
     padding: 10px 20px;
+    border: none;
     background-color: #007bff;
     color: white;
-    border: none;
     cursor: pointer;
 }
 
