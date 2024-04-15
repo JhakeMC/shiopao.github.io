@@ -2,30 +2,28 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Capture and Send Photo</title>
-<style>
-    body, html {
-        height: 100%;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #f0f0f0;
-    }
-    #captureButton {
-        padding: 20px 40px;
-        font-size: 20px;
-        cursor: pointer;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 5px;
-    }
-</style>
+<title>Group Chat</title>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<video id="video" width="640" height="480" autoplay></video>
-<button id="captureButton">Capture Photo</button>
+<div id="login-container">
+    <h2>Welcome to the Group Chat</h2>
+    <input type="password" id="password" placeholder="Enter password">
+    <button onclick="checkPassword()">Enter</button>
+</div>
+<div id="username-container" style="display: none;">
+    <h2>Choose your username</h2>
+    <input type="text" id="username" placeholder="Enter username">
+    <button onclick="setUsername()">Submit</button>
+</div>
+<div id="chat-container" style="display: none;">
+    <div id="messages"></div>
+    <input type="text" id="message" placeholder="Type your message">
+    <input type="file" id="file">
+    <button onclick="sendMessage()">Send</button>
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
