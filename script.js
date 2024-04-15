@@ -1,29 +1,72 @@
-document.getElementById('captureButton').addEventListener('click', function() {
-    const video = document.getElementById('video');
-    const canvas = document.createElement('canvas');
-    canvas.width = 640;
-    canvas.height = 480;
-    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-    
-    canvas.toBlob(function(blob) {
-        const formData = new FormData();
-        formData.append('photo', blob);
-        
-        fetch('sendEmail.php', {
-            method: 'POST',
-            body: formData,
-        })
-        .then(response => response.text())
-        .then(data => alert(data))
-        .catch(error => console.error('Error:', error));
-    });
-});
+// Initialize Firebase
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    databaseURL: "YOUR_DATABASE_URL",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
 
-navigator.mediaDevices.getUserMedia({ video: true })
-    .then(function(stream) {
-        const video = document.getElementById('video');
-        video.srcObject = stream;
-    })
-    .catch(function(error) {
-        console.error('Error accessing the camera:', error);
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+let username;
+let password = "your_password"; // Change this to your desired password
+
+function checkPassword() {
+    const enteredPassword = document.getElementById("password").value;
+    if (enteredPassword === password) {
+        document.getElementById("login-container").style.display = "none";
+        document.getElementById("username-container").style.display = "block";
+    } else {
+        alert("Incorrect password. Please try again.");
+    }
+}
+
+function setUsername() {
+    username = document.getElementById("username").value;
+    document.getElementById("username-container").style.display = "none";
+    document.getElementById("chat-container").style.display = "block";
+    loadMessages();
+}
+
+function sendMessage() {
+    const message = document.getElementById("message").value;
+    const file = document.getElementById("file").files[0];
+    const timestamp = new Date().getTime();
+    const messageData = {
+        username: username,
+        message: message,
+        timestamp: timestamp
+    };
+    if (file) {
+        const storageRef = firebase.storage().ref('files/' + file.name);
+        storageRef.put(file).then(function(snapshot) {
+            snapshot.ref.getDownloadURL().then(function(url) {
+                messageData.file = url;
+                database.ref('messages/' + timestamp).set(messageData);
+            });
+        });
+    } else {
+        database.ref('messages/' + timestamp).set(messageData);
+    }
+    document.getElementById("message").value = "";
+}
+
+function loadMessages() {
+    const messagesRef = database.ref('messages');
+    messagesRef.on('child_added', function(snapshot) {
+        const message = snapshot.val();
+        const messageElement = document.createElement('div');
+        messageElement.innerHTML = '<strong>' + message.username + ':</strong> ' + message.message;
+        if (message.file) {
+            const fileElement = document.createElement('a');
+            fileElement.href = message.file;
+            fileElement.textContent = ' (View File)';
+            messageElement.appendChild(fileElement);
+        }
+        document.getElementById('messages').appendChild(messageElement);
     });
+}
