@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#login-container, #username-container, #chat-container {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+input[type="password"], input[type="text"], input[type="file"] {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 100%;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
