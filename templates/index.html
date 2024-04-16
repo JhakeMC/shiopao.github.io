@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Font Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <title>Simple Notepad App</title>
+</head>
+<body>
+    <h1 id="pageTitle">Shiopao Notes</h1>
+    <div class="container">
+        <input type="text" id="filename" placeholder="Enter file name without extension">
+        <textarea id="notepad" placeholder="Start typing here..."></textarea>
+        <button onclick="saveText()">Save</button>
+        <button onclick="loadFiles()">View Saved Files</button>
+        <ul id="fileList"></ul>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
